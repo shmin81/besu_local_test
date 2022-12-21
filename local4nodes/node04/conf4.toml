@@ -1,0 +1,44 @@
+# Path: ~/besu_privacy_sample/privateNetwork/:/app/
+
+# data
+data-path="/Users/min/Downloads/github/besu_local_test/local4nodes/node04/data"
+logging="DEBUG"
+
+# private_key
+node-private-key-file="/Users/min/Downloads/github/besu_local_test/local4nodes/out/keys/0xebcde9b2bc92062258927a9bce56a9233ece1029/key.priv"
+
+auto-log-bloom-caching-enabled=false
+genesis-file="/Users/min/Downloads/github/besu_local_test/local4nodes/genesis_IBFT2.json"
+
+min-gas-price=0
+sync-mode="FAST"
+host-whitelist=["*"]
+
+# identity
+identity="node4"
+
+#p2p-host="0.0.0.0"
+p2p-port=30306
+
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8575
+
+rpc-http-api=["ADMIN","NET","ETH","WEB3","IBFT","DEBUG","TRACE","TXPOOL"]
+rpc-http-cors-origins=["*"]
+
+rpc-ws-enabled=false
+rpc-ws-port=8576
+
+revert-reason-enabled=true
+
+tx-pool-max-size=100
+#tx-pool-hashes-max-size=20
+#tx-pool-price-bump=10
+tx-pool-retention-hours=1
+
+bootnodes=["enode://6ccdf5893a1ed9214c92f48b8f94fc95fb0f81614262c1ef493369fb28f967d6dff3a176dd0b1f0a901451a70626755c8101bdac92a7eea558a75b78869c09ed@127.0.0.1:30303"]
+
+#tx-pool-tx-inflow-control-enabled=true
+#tx-pool-enterprise-pending-tx-sorter-enabled=true
+
