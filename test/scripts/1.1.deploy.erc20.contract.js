@@ -35,6 +35,7 @@ async function init() {
 	let httpProvider = new Web3.providers.HttpProvider(httpRpcUrl);
 	web3 = new Web3(httpProvider)
 
+	// smart conract deploy account
 	accountFrom = utils.convertPrivKeyToAccount(conf.ownerPrivKey)
 	LOG(`Sender: ${accountFrom.address}`)
 

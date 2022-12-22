@@ -103,7 +103,7 @@ exports.transferReq = function (senderKey, receiver, nonce, amount=1) {
     
     // sign the transaction
     const txObj = Transaction.fromTxData(txData, { common: customChain })
-    console.log(`tx: ${JSON.stringify(txObj, null, 2)}`)
+    // console.log(`tx: ${JSON.stringify(txObj, null, 2)}`)
     const signedObj = txObj.sign(senderKey)
     //console.log(`signed tx: ${JSON.stringify(signedObj)}`)
     const signedTx = signedObj.serialize().toString('hex')
