@@ -28,6 +28,7 @@ besuSourcePath=/Users/min/Downloads/gitlab/besu-client
 
 # 실행할 besu 바이너리 위치 
 besuPath=$besuSourcePath/build/install/besu/bin/besu
+# besuPath=besu
 
 echo '\n* Exec besu --version'
 $besuPath --version
