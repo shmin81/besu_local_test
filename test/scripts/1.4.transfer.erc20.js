@@ -56,6 +56,10 @@ async function init() {
     let chainId = Web3Utils.hexToNumber(response)
     LOG(`ChainId: ${chainId} ${response}`)
     test.customChain(chainId)
+
+    return new Promise(function(resolve, reject) {
+        resolve(true)
+    })
 }
 
 async function run() {
@@ -76,12 +80,12 @@ async function run() {
     let txidResults = await utils.sendHttp(request)
     LOG(`txid: ${txidResults}`)
     let txResults = await utils.httpGetTxReceipt(httpRpcUrl, txidResults)
-    //LOG(`eth_getTransactionReceipt (${txidResults}) => ${JSON.stringify(txResults)}`)
+    LOG(`eth_getTransactionReceipt (${txidResults}) => ${JSON.stringify(txResults)}`)
     if (txResults.status != true) {
-        LOG(`tx - Failed`)
+        LOG(`tx - Failed `)
         return;
     }
-    LOG(`tx - success`)
+    LOG(`tx - success [status:${txResults.status}]`)
 
     response = await test.balanceOf(accountFrom.address)
     LOG(`* token owner's balance: ${response}`)
@@ -92,5 +96,6 @@ async function run() {
     LOG('done.')
 }
 
-init()
-run()
+init().then(() => {
+    return run()
+})

@@ -103,7 +103,7 @@ exports.transferReq = function (senderKey, receiver, nonce, amount=1) {
     
     // sign the transaction
     const txObj = Transaction.fromTxData(txData, { common: customChain })
-    //console.log(`tx: ${JSON.stringify(txObj)}`)
+    console.log(`tx: ${JSON.stringify(txObj, null, 2)}`)
     const signedObj = txObj.sign(senderKey)
     //console.log(`signed tx: ${JSON.stringify(signedObj)}`)
     const signedTx = signedObj.serialize().toString('hex')
@@ -164,11 +164,14 @@ exports.balanceOf = function (account, targetBlockParam="latest") {
     balanceOfBody.id++
     //console.log(txData)
     request.body = balanceOfBody
-
+    // console.log(`call(balanceOf) => ${JSON.stringify(request.body, null, 2)}`)
     return new Promise(function(resolve, reject) {
       httpRequest.post(request)
         .then(response => {
             if (response.body.result !== undefined && typeof response.body.result === 'string' && response.body.result.startsWith('0x')) {
+                if (response.body.result == '0x'){
+                    resolve('wrong to address. not erc-20')
+                }
                 //console.log(account, Web3_Utils.hexToNumber(response.body.result), JSON.stringify(response))
                 resolve(Web3_Utils.hexToNumber(response.body.result))
             }
