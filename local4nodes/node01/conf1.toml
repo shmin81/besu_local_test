@@ -1,4 +1,6 @@
 # Path: ~/besu_privacy_sample/privateNetwork/:/app/
+# https://skchainz.atlassian.net/wiki/spaces/CHAINZ/pages/26509355/ChainZ+Mainnet+As-Is+To-Be
+# https://besu.hyperledger.org/en/21.10.9/Reference/CLI/CLI-Syntax/
 
 # data
 data-path="/Users/min/Downloads/github/besu_local_test/local4nodes/node01/data"
@@ -11,7 +13,7 @@ auto-log-bloom-caching-enabled=false
 genesis-file="/Users/min/Downloads/github/besu_local_test/local4nodes/genesis_IBFT2.json"
 
 min-gas-price=0
-sync-mode="FAST"
+sync-mode="FULL"
 host-whitelist=["*"]
 
 # identity

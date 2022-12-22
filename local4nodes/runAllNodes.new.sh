@@ -13,7 +13,7 @@ rm -rf ./node02/data/*
 rm -rf ./node03/data/*
 rm -rf ./node04/data/*
 
-# 자바 버전 셋팅
+# macOS 자바 버전 셋팅
 export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 # 실행할 besu 소스코드 위치 
