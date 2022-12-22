@@ -1,0 +1,9 @@
+{
+  "erc20Address": "0xfE0B7EE21e8298fC68b9Bf5f404e7df7B6671EC2",
+  "ownerPrivKey": "8f2a55949038a9610f50fb23b5883af3b4ecb3c3bb792cbcefbd1542c692be63",
+  "endpointfile": "dev-local.endpoints.json",
+  "accountfile": "accounts_10.json",
+  "startAccountIdx": 0,
+  "numberOfAccounts": 2,
+  "startPortNumber": 10080
+}

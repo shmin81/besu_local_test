@@ -1,0 +1,14 @@
+{
+  "name": "ethereum-test",
+  "version": "0.1.0",
+  "description": "hyperledger besu - erc-20 test",
+  "main": "index.js",
+  "author": "shmin",
+  "license": "MIT",
+  "dependencies": {
+      "@ethereumjs/tx": "^3.5.1",
+      "http": "0.0.1-security",
+      "request-promise": "^4.2.6",
+      "web3": "^1.7.3"
+  }
+}
