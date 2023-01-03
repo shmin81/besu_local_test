@@ -69,6 +69,9 @@ async function run() {
     senderNonce = Web3Utils.hexToNumber(response)
     //LOG(`NONCE: ${senderNonce} ${response}`)
 
+    let settedGas = await test.transferEstimateGas(accountFrom.address, accountConf[0].sender)
+    LOG(`* token transfer Estimated Gas: ${settedGas}`)
+
     response = await test.balanceOf(accountFrom.address)
     LOG(`* token owner's balance: ${response}`)
 

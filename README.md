@@ -16,5 +16,15 @@
 5. runAllNodes.new.sh (or runAllNodes.sh) 파일 확인 및 수정 -> 24~28라인은 주석처리하고, 30라인을 besuPath=besu로 수정
 6. sh runAllNodes.new.sh (or runAllNodes.sh)
 
-# test
+# besu stop
+1. cd {{besu_local_test}}
+1. sh stopAllNodes.sh
+
+# test 참조
+- node.js 설치
 - web3.js https://web3js.readthedocs.io/en/v1.7.5/
+1. cd test
+2. npm install
+3. cd scripts
+4. 숫자로 시작하는 자바스크립트 파일을 순서대로 실행
+

@@ -181,30 +181,6 @@ exports.sendHttp = function (req) {
     })
 }
 
-/** use reject for fail */
-exports.sendHttp2 = function (req) {
-    return new Promise(function(resolve, reject) {
-        httpRequest.post(req)
-            .then(response => {
-                //if (response.body.result !== undefined && typeof response.body.result === 'string' && response.body.result.startsWith('0x')) {
-                if (response.body.error == undefined && response.body.result !== undefined) {
-                    resolve(response.body.result)
-                }
-                else {
-                    console.error(req.body.method, response.body)
-                    reject(response.body)
-                    //resolve(response.body)
-                }
-            })
-            .catch(err => {
-                console.error(req.body.method, 'error')
-                console.error(err)
-                reject(err)
-                //resolve(err)
-            })
-    })
-}
-
 exports.httpGetTxReceipt = function (_url, _txid) {
 
     const _body = {
@@ -233,7 +209,7 @@ async function retryTest(req) {
         let wakeUpTime = Date.now() + interval;
         while (Date.now() < wakeUpTime) { }
         //console.log('try ', tryCnt)
-        response = await sendhttpx(req)
+        response = await sendHttpSync(req)
         if (response == null && tryCnt++ >= chkMaxCount){
             response = 'failed'
         }
@@ -249,7 +225,7 @@ let retryResponse = function(req, txid, res, rej) {
     //console.log('*** retryResponse')
     let timerId = setInterval(function() { 
         //console.log('*** sendhttpx', tryCnt)
-        sendhttpx(req).then(receipt => {
+        sendHttpSync(req).then(receipt => {
             //console.log('*** response', receipt)
             if (receipt == null) {
                 if (tryCnt++ >= chkMaxCount) {
@@ -265,7 +241,7 @@ let retryResponse = function(req, txid, res, rej) {
     }, interval);
 }
 
-async function sendhttpx(req) {
+async function sendHttpSync(req) {
     return new Promise(function(resolve, reject) {
         httpRequest.post(req)
             .then(response => {

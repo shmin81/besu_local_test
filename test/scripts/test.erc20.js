@@ -71,7 +71,7 @@ exports.transferEstimateGas = function (senderAddr, receiver) {
             if (response.body.result !== undefined && typeof response.body.result === 'string' && response.body.result.startsWith('0x')) {
                 //console.log(account, Web3_Utils.hexToNumber(response.body.result), JSON.stringify(response))
                 let _gas = Web3_Utils.hexToNumber(response.body.result)
-                gasHex = Web3_Utils.numberToHex(_gas + 1000)
+                gasHex = Web3_Utils.numberToHex(_gas + 10000)
                 resolve(_gas)
             }
             else {
