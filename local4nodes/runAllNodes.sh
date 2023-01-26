@@ -1,6 +1,6 @@
 #!/bin/bash
-# node 1,2를 background에서 실행하고, node 3을 foreground에서 실행
-# node 1.2는 다른 스크립트로 중지??
+# node 2,3,4는 background에서 실행하고, node 1을 foreground에서 실행
+# node 2,3,4는 다른 스크립트(stopAllNodes.sh)를 이용해 중지 가능
 
 clear
 
@@ -38,7 +38,7 @@ if [ $exitCode -ne 0 ] ; then
     exit 1
 fi
 
-echo "$(date +%Y)년   $(date +%m)월 $(date +%d)일 $(date +%H) 시  $(date +%M) 분  $(date +%S) 초" 
+echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
 sleep 3
 
 echo '\n* node4 Exec besu --config-file xxx'
