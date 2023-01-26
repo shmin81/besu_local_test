@@ -10,8 +10,6 @@ exports.loadConf = function(_confPath) {
     //console.log('loadConf', _confPath)
     confPath = checkPath(_confPath)
     let conf = getConfig(confPath, false)
-    //let confContent = fs.readFileSync(confPath, 'utf8')
-    //conf = JSON.parse(confContent)
 
     // check data
     if (conf.accountfile == undefined) {
@@ -20,7 +18,6 @@ exports.loadConf = function(_confPath) {
         conf = getConfig(confPath)
     }
 
-    //if (conf.ownerPrivKey.indexOf('0x') == 0){
     if (conf.ownerPrivKey.startsWith('0x')){
         conf.ownerPrivKey = conf.ownerPrivKey.substring(2)
     }
@@ -67,23 +64,6 @@ function checkPath(_confPath) {
 
     ERROR(`Not found: ${_confPath}`)
     process.exit(1)
-
-    // if (fs.existsSync(_confPath) == false) {
-    //     if (fs.existsSync(defaultConfigDir + _confPath) == false) {
-    //         if (!_confPath.toString().toLowerCase().endsWith('.json')){
-    //             _confPath = _confPath + '.json'
-    //             if (fs.existsSync(defaultConfigDir + _confPath)) {
-    //                 return defaultConfigDir + _confPath
-    //             }
-    //         }
-    //         ERROR(`Not found: ${_confPath}`)
-    //         process.exit(1)
-    //     }
-    //     else {
-    //         return defaultConfigDir + _confPath
-    //     }
-    // }
-    // return _confPath
 }
 
 function getConfig(path, strict=true) {
@@ -199,38 +179,19 @@ exports.httpGetTxReceipt = function (_url, _txid) {
     })
 }
 
-const interval = 1000
+const interval = 500
 const chkMaxCount = 120
-let tryCnt = 0
-async function retryTest(req) {
-    let response = null
-    tryCnt = 0
-    while (response == null) {
-        let wakeUpTime = Date.now() + interval;
-        while (Date.now() < wakeUpTime) { }
-        //console.log('try ', tryCnt)
-        response = await sendHttpSync(req)
-        if (response == null && tryCnt++ >= chkMaxCount){
-            response = 'failed'
-        }
-    }
-
-    return new Promise(function(resolve, reject) {
-        resolve(response)
-    })
-}
-
 let retryResponse = function(req, txid, res, rej) {
-    tryCnt = 0
+    let tryCnt = 0
     //console.log('*** retryResponse')
     let timerId = setInterval(function() { 
-        //console.log('*** sendhttpx', tryCnt)
+        // console.log('*** sendhttpx', tryCnt)
         sendHttpSync(req).then(receipt => {
-            //console.log('*** response', receipt)
+            // console.log('*** response', receipt)
             if (receipt == null) {
                 if (tryCnt++ >= chkMaxCount) {
                     clearTimeout(timerId)
-                    rej(`failed (not found tx receipt - ${txid})`)
+                    rej(`failed by time out (not found tx receipt - ${txid})`)
                 }
             }
             else {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.5.0 <=0.8.4;
+pragma solidity >=0.5.0 <=0.8.18;
 
 // compile with:
 // solcjs SimpleToken.sol --bin --abi --optimize --overwrite -o .
