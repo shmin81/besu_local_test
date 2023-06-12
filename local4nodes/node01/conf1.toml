@@ -3,14 +3,14 @@
 # https://besu.hyperledger.org/en/21.10.9/Reference/CLI/CLI-Syntax/
 
 # data
-data-path="/Users/min/Downloads/github/besu_local_test/local4nodes/node01/data"
+data-path="./node01/data"
 logging="INFO"
 
 # private_key
-node-private-key-file="/Users/min/Downloads/github/besu_local_test/local4nodes/out/keys/0x3ac3bbbb1bf081e8bbb769e47598857e970653cf/key.priv"
+node-private-key-file="./out/keys/0x3ac3bbbb1bf081e8bbb769e47598857e970653cf/key.priv"
 
 auto-log-bloom-caching-enabled=false
-genesis-file="/Users/min/Downloads/github/besu_local_test/local4nodes/genesis_IBFT2.json"
+genesis-file="./genesis_IBFT2.json"
 
 min-gas-price=0
 sync-mode="FULL"
@@ -30,7 +30,7 @@ rpc-http-api=["ADMIN","NET","ETH","WEB3","IBFT","DEBUG","TRACE","TXPOOL"]
 rpc-http-cors-origins=["*"]
 
 rpc-http-authentication-enabled=false
-rpc-http-authentication-jwt-public-key-file="/Users/min/Downloads/github/besu_local_test/local4nodes/publicKey.pem"
+rpc-http-authentication-jwt-public-key-file="./publicKey.pem"
 
 rpc-ws-enabled=true
 rpc-ws-port=8546

@@ -1,14 +1,14 @@
 # Path: ~/besu_privacy_sample/privateNetwork/:/app/
 
 # data
-data-path="/Users/min/Downloads/github/besu_local_test/local4nodes/node02/data"
+data-path="./node02/data"
 logging="INFO"
 
 # private_key
-node-private-key-file="/Users/min/Downloads/github/besu_local_test/local4nodes/out/keys/0x3c79733f8aa07f9b7e55106b22cb9097d5887d8b/key.priv"
+node-private-key-file="./out/keys/0x3c79733f8aa07f9b7e55106b22cb9097d5887d8b/key.priv"
 
 auto-log-bloom-caching-enabled=false
-genesis-file="/Users/min/Downloads/github/besu_local_test/local4nodes/genesis_IBFT2.json"
+genesis-file="./genesis_IBFT2.json"
 
 min-gas-price=0
 sync-mode="FULL"

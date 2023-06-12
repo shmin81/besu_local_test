@@ -14,12 +14,20 @@ echo $workingDir
 # rm -rf ./node04/data/*
 
 # macOS 자바 버전 셋팅
-export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+#export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 
 # 실행할 besu 소스코드 위치 
-#besuSourcePath=/Users/min/Downloads/besu-git-ref/besu
-besuSourcePath=/Users/min/Downloads/gitlab/besu-client
+#besuSourcePath=/Users/min/Downloads/gitlab/besu-client
 #besuSourcePath=/Users/min/Downloads/github-utils/besu-client-tmp
+besuSourcePath=$workingDir/../../../gitlab/besu-client
+#besuSourcePath=$workingDir/../../../github-utils/besu-client-tmp
+
+#Check Requirement
+if ! [ -e $besuSourcePath ] ; then
+	echo "[Error] '$besuSourcePath' directory does not exist."
+	exit 1
+fi
 
 # besu 소스코드를 빌드할 필요가 있을 경우
 # cd $besuSourcePath
@@ -39,6 +47,7 @@ if [ $exitCode -ne 0 ] ; then
 fi
 
 echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
+echo  workingDir: $workingDir
 sleep 3
 
 echo '\n* node4 Exec besu --config-file xxx'
