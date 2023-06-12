@@ -69,7 +69,7 @@ async function run() {
         request = test.transferReq(accountFrom.privKeyBuf, acc.sender, senderNonce, value)
         senderNonce++
         response = await utils.sendHttp(request)
-        LOG(`${i} => txid: ${response}`)
+        LOG(`${i} ${acc.sender} => txid: ${response}`)
     }
     LOG('done.')
 }

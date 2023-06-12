@@ -16,6 +16,7 @@ rm -rf ./node04/data/*
 # macOS 자바 버전 셋팅
 #export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export BESU_OPTS=-Xmx1g
 
 # 실행할 besu 소스코드 위치 
 #besuSourcePath=/Users/min/Downloads/gitlab/besu-client

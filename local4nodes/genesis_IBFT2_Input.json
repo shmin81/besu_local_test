@@ -1,11 +1,11 @@
 {
   "genesis": {
     "config": {
-       "chainId": 54512,
+       "chainId": 2029,
        "byzantiumblock": 0,
        "istanbulblock": 0,
        "ibft2": {
-         "blockperiodseconds": 10,
+         "blockperiodseconds": 2,
          "epochlength": 30000,
          "requesttimeoutseconds": 20
        }
