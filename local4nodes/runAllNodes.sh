@@ -18,6 +18,13 @@ echo $workingDir
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export BESU_OPTS=-Xmx1g
 
+# config 파일보다 환경변수로 설정된 값이 우선하여 들어감
+export BESU_TX_POOL_TX_INFLOW_CONTROL_ENABLED=true
+export BESU_TX_POOL_TX_INFLOW_MAX_SIZE=100
+export BESU_TX_POOL_RETENTION_MINUTES=2
+export BESU_TX_POOL_ENTERPRISE_PENDING_TX_SORTER_ENABLED=true
+export BESU_TX_POOL_LIMIT_BY_ACCOUNT_PERCENTAGE=1.0
+
 # 실행할 besu 소스코드 위치 
 #besuSourcePath=/Users/min/Downloads/gitlab/besu-client
 #besuSourcePath=/Users/min/Downloads/github-utils/besu-client-tmp
