@@ -24,7 +24,9 @@ export BESU_TX_POOL_TX_INFLOW_MAX_SIZE=100
 export BESU_TX_POOL_RETENTION_MINUTES=2
 export BESU_TX_POOL_ENTERPRISE_PENDING_TX_SORTER_ENABLED=true
 export BESU_TX_POOL_LIMIT_BY_ACCOUNT_PERCENTAGE=1.0
-
+export BESU_RPC_HTTP_API=ETH,NET,WEB3,TXPOOL
+#export BESU_MINER_ENABLED=true # Error: Unable to mine without a valid coinbase. Either disable mining (remove --miner-enabled) or specify the beneficiary of mining (via --miner-coinbase <Address>)
+export BESU_CONFIG_FILE='./node01/conf1.toml' # 이렇게 사용하는 것도 가능함.
 # 실행할 besu 소스코드 위치 
 #besuSourcePath=/Users/min/Downloads/gitlab/besu-client
 #besuSourcePath=/Users/min/Downloads/github-utils/besu-client-tmp
@@ -69,3 +71,4 @@ nohup $besuPath --config-file="./node02/conf2.toml" --identity=besu2 > node02.lo
 
 echo '\n* node1 Exec besu --config-file xxx'
 $besuPath --config-file="./node01/conf1.toml" --identity=besu1
+#$besuPath --identity=besu1

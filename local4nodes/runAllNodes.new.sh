@@ -58,13 +58,13 @@ echo  workingDir: $workingDir
 sleep 3
 
 echo '\n* node4 Exec besu --config-file xxx'
-nohup $besuPath --config-file="./node04/conf4.toml" > node04.log 2>&1 &
+nohup $besuPath --config-file="./node04/conf4.toml" --identity=besu4 > node04.log 2>&1 &
 
 echo '\n* node3 Exec besu --config-file xxx'
-nohup $besuPath --config-file="./node03/conf3.toml" > node03.log 2>&1 &
+nohup $besuPath --config-file="./node03/conf3.toml" --identity=besu3 > node03.log 2>&1 &
 
 echo '\n* node2 Exec besu --config-file xxx'
-nohup $besuPath --config-file="./node02/conf2.toml" > node02.log 2>&1 &
+nohup $besuPath --config-file="./node02/conf2.toml" --identity=besu2 > node02.log 2>&1 &
 
 echo '\n* node1 Exec besu --config-file xxx'
-$besuPath --config-file="./node01/conf1.toml"
+$besuPath --config-file="./node01/conf1.toml" --identity=besu1
