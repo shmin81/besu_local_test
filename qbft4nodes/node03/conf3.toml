@@ -1,0 +1,43 @@
+# Path: ~/besu_privacy_sample/privateNetwork/:/app/
+
+# data
+data-path="./node03/data"
+logging="DEBUG"
+
+# private_key
+node-private-key-file="./out/keys/0x953fe4581728283e2f84ae1eb7bd5194596079ed/key.priv"
+
+auto-log-bloom-caching-enabled=false
+genesis-file="./genesis.json"
+
+min-gas-price=0
+sync-mode="FULL"
+host-whitelist=["*"]
+
+# identity
+identity="node3"
+
+#p2p-host="0.0.0.0"
+p2p-port=30305
+
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8565
+
+rpc-http-api=["ADMIN","NET","ETH","WEB3","IBFT","DEBUG","TRACE","TXPOOL"]
+rpc-http-cors-origins=["*"]
+
+rpc-ws-enabled=false
+rpc-ws-port=8566
+
+revert-reason-enabled=true
+
+tx-pool-max-size=100
+#tx-pool-price-bump=10
+tx-pool-retention-hours=1
+
+#bootnodes=["enode://6ccdf5893a1ed9214c92f48b8f94fc95fb0f81614262c1ef493369fb28f967d6dff3a176dd0b1f0a901451a70626755c8101bdac92a7eea558a75b78869c09ed@127.0.0.1:30303"]
+
+#tx-pool-tx-inflow-control-enabled=true
+#tx-pool-enterprise-pending-tx-sorter-enabled=true
+
