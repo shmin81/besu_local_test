@@ -1,6 +1,5 @@
 #!/bin/bash
-# node 1,2를 background에서 실행하고, node 3을 foreground에서 실행
-# node 1.2는 다른 스크립트로 중지??
+
 
 clear
 
@@ -12,14 +11,20 @@ echo $workingDir
 
 # 자바 버전 셋팅
 export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export BESU_OPTS=-Xmx1g
 
-# 실행할 besu 소스코드 위치 
-#besuSourcePath=/Users/min/Downloads/besu-git-ref/besu
+# 실행할 besu 소스코드 위치
 #besuSourcePath=/Users/min/Downloads/gitlab/besu-client
 besuSourcePath=$workingDir/../../../gitlab/besu-client
+#Check Requirement
+if ! [ -e $besuSourcePath ] ; then
+	echo "[Error] '$besuSourcePath' directory does not exist."
+	exit 1
+fi
 
 # 실행할 besu 바이너리 위치 
 besuPath=$besuSourcePath/build/install/besu/bin/besu
+# besuPath=besu
 
 function chkExexResult {
     if [ $1 -ne 0 ] ; then
@@ -36,19 +41,14 @@ function chkExexResult {
 
 # clear
 
-## 
 echo '\n* Exec besu --version'
 $besuPath --version
 chkExexResult $? $besuPath
 
 pwd
 echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
-sleep 1
-
-export BESU_TX_POOL_TX_INFLOW_CONTROL_ENABLED=true
-export BESU_TX_POOL_TX_INFLOW_MAX_SIZE=1000
-export BESU_TX_POOL_ENTERPRISE_PENDING_TX_SORTER_ENABLED=true
-#export BESU_TARGET_GAS_LIMIT=6000000
+echo  workingDir: $workingDir
+sleep 3
 
 echo '\n* node1 Exec besu --config-file xxx'
-$besuPath --config-file="./node01/conf1.toml"
+$besuPath --config-file="./node01/conf1.toml" --identity=besu1
