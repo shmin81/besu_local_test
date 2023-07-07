@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 clear
 
 workingDir=$(pwd)
@@ -10,7 +9,7 @@ echo $workingDir
 #rm -rf ./node01/data/*
 
 # 자바 버전 셋팅
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+#export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export BESU_OPTS=-Xmx1g
 
 # 실행할 besu 소스코드 위치
