@@ -9,7 +9,7 @@ logging="INFO"
 # private_key
 node-private-key-file="./out/keys/0x3ac3bbbb1bf081e8bbb769e47598857e970653cf/key.priv"
 
-auto-log-bloom-caching-enabled=false
+#auto-log-bloom-caching-enabled=false
 genesis-file="./genesis_IBFT2.json"
 
 min-gas-price=0
@@ -37,9 +37,12 @@ rpc-ws-port=8546
 
 revert-reason-enabled=true
 
+tx-pool-limit-by-account-percentage=0.4
 tx-pool-max-size=100
 #tx-pool-price-bump=10
 tx-pool-retention-hours=1
 
-#tx-pool-tx-inflow-control-enabled=true
-#tx-pool-enterprise-pending-tx-sorter-enabled=true
+# tx-pool-tx-inflow-control-enabled=true
+# tx-pool-enterprise-pending-tx-sorter-enabled=true
+# tx-pool-tx-fast-verify-signature-enabled=true
+# perf-eliminate-redundant-block-validation-enabled=true

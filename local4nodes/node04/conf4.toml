@@ -7,7 +7,7 @@ logging="DEBUG"
 # private_key
 node-private-key-file="./out/keys/0xebcde9b2bc92062258927a9bce56a9233ece1029/key.priv"
 
-auto-log-bloom-caching-enabled=false
+#auto-log-bloom-caching-enabled=false
 genesis-file="./genesis_IBFT2.json"
 
 min-gas-price=0
@@ -32,12 +32,14 @@ rpc-ws-port=8576
 
 revert-reason-enabled=true
 
+tx-pool-limit-by-account-percentage=0.4
 tx-pool-max-size=100
 #tx-pool-price-bump=10
 tx-pool-retention-hours=1
 
 bootnodes=["enode://6ccdf5893a1ed9214c92f48b8f94fc95fb0f81614262c1ef493369fb28f967d6dff3a176dd0b1f0a901451a70626755c8101bdac92a7eea558a75b78869c09ed@127.0.0.1:30303"]
 
-#tx-pool-tx-inflow-control-enabled=true
-#tx-pool-enterprise-pending-tx-sorter-enabled=true
-
+# tx-pool-tx-inflow-control-enabled=true
+# tx-pool-enterprise-pending-tx-sorter-enabled=true
+# tx-pool-tx-fast-verify-signature-enabled=true
+# perf-eliminate-redundant-block-validation-enabled=true
