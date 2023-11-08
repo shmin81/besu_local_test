@@ -37,7 +37,7 @@ rpc-ws-port=8546
 
 revert-reason-enabled=true
 
-tx-pool-max-size=100
+tx-pool-max-size=1000
 #tx-pool-price-bump=10
 tx-pool-retention-hours=1
 

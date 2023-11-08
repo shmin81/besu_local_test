@@ -9,8 +9,9 @@ echo $workingDir
 # macOS 자바 버전 셋팅
 #export JAVA_HOME=$(/usr/libexec/java_home -v 11)
 #export JAVA_HOME=$(/usr/libexec/java_home -v 17)
-export BESU_OPTS=-Xmx2g
-
+export BESU_OPTS="-Xmx2g"
+#export BESU_OPTS="-Xmx2g -Xms1g "
+#export JAVA_OPTS="-Dwhatap.micro.enabled=true "
 # config 파일보다 환경변수로 설정된 값이 우선하여 들어감
 export BESU_TX_POOL_TX_INFLOW_CONTROL_ENABLED=true
 export BESU_TX_POOL_TX_INFLOW_MAX_SIZE=100
