@@ -1,5 +1,4 @@
-//const fs = require("fs");
-//const { Address } = require('ethereumjs-util')
+// deposit: transfer from owner to accounts.sender
 const Web3Utils = require('web3-utils')
 
 const utils = require('./utils')
@@ -8,16 +7,20 @@ const test = require('./test.erc20')
 const LOG = (msg) => console.log(`[${new Date().toISOString()}] ${typeof msg === 'object' ? JSON.stringify(msg) : msg}`)
 
 //=============================
-const value = 100000
+const value = 1000
 //const abiPath = "../contracts/SimpleToken.abi"
 //=============================
 const args = process.argv.slice(2)
-if (args.length != 1) {
-  console.log('node  1.2.deposit.erc20.js  (or configName)')
+if (args.length < 1) {
+  console.log('node  1.2.deposit.erc20.js  (or configName)  userIdx(default:0)')
   process.exit(0)
 }
 
 let confPath = args[0]
+let userId = 0
+if (args.length == 2) {
+  userId = parseInt(args[1])
+}
 
 let conf = null
 let accountFrom = null
@@ -38,6 +41,12 @@ async function init() {
   LOG(`RPC: ${httpRpcUrl}`)
 
   accountConf = utils.loadJson(conf.accountfile)
+  const acountCnt = accountConf.length
+  LOG(`* target account count: ${acountCnt}`)
+  if (acountCnt <= userId) {
+    LOG(`[ERROR] wrong userIdx`)
+    process.exit(1)
+  }
 
   test.setTestEnv(httpRpcUrl, conf)
   request = test.ethReq('eth_chainId')
@@ -45,6 +54,10 @@ async function init() {
   let chainId = Web3Utils.hexToNumber(response)
   LOG(`ChainId: ${chainId} ${response}`)
   test.customChain(chainId)
+
+  return new Promise(function (resolve, reject) {
+    resolve(true)
+  })
 }
 
 async function run() {
@@ -59,18 +72,30 @@ async function run() {
   response = await test.balanceOf(accountFrom.address)
   LOG(`* token owner's balance: ${response}`)
 
-  const acountCnt = accountConf.length
-  LOG(`* target account count: ${acountCnt}`)
+  const acc = accountConf[userId]
+  response = await test.balanceOf(acc.sender)
+  LOG(`* token receiver's balance: ${response}`)
 
-  for (let i = 0; i < acountCnt; i++) {
-    const acc = accountConf[i]
-    request = test.transferReq(accountFrom.privKeyBuf, acc.sender, senderNonce, value)
-    senderNonce++
-    response = await utils.sendHttp(request)
-    LOG(`${i} ${acc.sender} => txid: ${response}`)
+  request = test.transferReq(accountFrom.privKeyBuf, acc.sender, senderNonce, value)
+  let txidResults = await utils.sendHttp(request)
+  LOG(`txid: ${txidResults}`)
+  let txResults = await utils.httpGetTxReceipt(httpRpcUrl, txidResults)
+  LOG(`eth_getTransactionReceipt (${txidResults}) => ${JSON.stringify(txResults)}`)
+  if (txResults.status != true) {
+    LOG(`tx - Failed `)
+    return
   }
+  LOG(`tx - success [status:${txResults.status}]`)
+
+  response = await test.balanceOf(accountFrom.address)
+  LOG(`* token owner's balance: ${response}`)
+
+  response = await test.balanceOf(acc.sender)
+  LOG(`* token receiver's balance: ${response}`)
+
   LOG('done.')
 }
 
-init()
-run()
+init().then(() => {
+  return run()
+})
