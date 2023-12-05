@@ -12,7 +12,7 @@ genesis-file="./genesis.json"
 
 min-gas-price=0
 sync-mode="FULL"
-host-whitelist=["*"]
+host-allowlist=["*"]
 
 # identity
 identity="node3"
@@ -30,11 +30,16 @@ rpc-http-cors-origins=["*"]
 rpc-ws-enabled=false
 rpc-ws-port=8566
 
-revert-reason-enabled=true
-
+# txpool
+tx-pool-limit-by-account-percentage=0.4
 tx-pool-max-size=100
 #tx-pool-price-bump=10
 tx-pool-retention-hours=1
+
+# https://besu.hyperledger.org/public-networks/how-to/connect/manage-peers
+remote-connections-limit-enabled=false
+random-peer-priority-enabled=true
+revert-reason-enabled=true
 
 #bootnodes=["enode://6ccdf5893a1ed9214c92f48b8f94fc95fb0f81614262c1ef493369fb28f967d6dff3a176dd0b1f0a901451a70626755c8101bdac92a7eea558a75b78869c09ed@127.0.0.1:30303"]
 

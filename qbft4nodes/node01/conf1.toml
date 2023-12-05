@@ -14,7 +14,7 @@ genesis-file="./genesis.json"
 
 min-gas-price=0
 sync-mode="FULL"
-host-whitelist=["*"]
+host-allowlist=["*"]
 
 # identity
 identity="node1"
@@ -35,11 +35,16 @@ rpc-http-authentication-jwt-public-key-file="./publicKey.pem"
 rpc-ws-enabled=true
 rpc-ws-port=8546
 
-revert-reason-enabled=true
-
+# txpool
+tx-pool-limit-by-account-percentage=0.4
 tx-pool-max-size=100
 #tx-pool-price-bump=10
 tx-pool-retention-hours=1
+
+# https://besu.hyperledger.org/public-networks/how-to/connect/manage-peers
+remote-connections-limit-enabled=false
+random-peer-priority-enabled=true
+revert-reason-enabled=true
 
 #tx-pool-tx-inflow-control-enabled=true
 #tx-pool-enterprise-pending-tx-sorter-enabled=true
