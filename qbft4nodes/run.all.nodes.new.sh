@@ -15,7 +15,7 @@ rm -rf ./node04/data/*
 
 # macOS 자바 버전 셋팅
 #export JAVA_HOME=$(/usr/libexec/java_home -v 11)
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+#export JAVA_HOME=$(/usr/libexec/java_home -v 17)
 export BESU_OPTS=-Xmx1g
 
 # config 파일보다 환경변수로 설정된 값이 우선하여 들어감
@@ -26,8 +26,11 @@ export BESU_TX_POOL_ENTERPRISE_PENDING_TX_SORTER_ENABLED=true
 export BESU_TX_POOL_TX_FAST_VERIFY_SIGNATURE_ENABLED=true
 export BESU_PERF_ELIMINATE_REDUNDANT_BLOCK_VALIDATION_ENABLED=true
 #######################################
+export BESU_TX_POOL=legacy 
+export BESU_TX_POOL=sequenced
 export BESU_TX_POOL_MAX_SIZE=100
 export BESU_TX_POOL_LIMIT_BY_ACCOUNT_PERCENTAGE=1.0
+#######################################
 export BESU_RPC_HTTP_API=ETH,NET,WEB3,TXPOOL,DEBUG,TRACE
 export BESU_BOOTNODES=enode://d3045c8ef00ca882f4acfd2d4f76479d18245c2d6a6d7ad5a3047591919d94c114470863a9aa9e3fb6a93eca7569cfe143dcf321bfdbba419323ec305dcf6907@127.0.0.1:30303
 
