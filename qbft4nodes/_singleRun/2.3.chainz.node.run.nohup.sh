@@ -21,4 +21,4 @@ echo 'besu:' $besuPath
 # $besuPath --version
 
 echo '\n* node3 Exec besu --config-file xxx'
-$besuPath --config-file="./node03/conf3.toml" --identity=$BESU_IDENTITY
+nohup $besuPath --config-file="./node03/conf3.toml" --identity=$BESU_IDENTITY > node03.log 2>&1 &
