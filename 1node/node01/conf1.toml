@@ -35,10 +35,11 @@ rpc-http-authentication-jwt-public-key-file="./publicKey.pem"
 rpc-ws-enabled=true
 rpc-ws-port=8546
 
-# txpool
-tx-pool-max-size=1000
+# txpool (sequenced)
+#tx-pool-max-size=1000
 #tx-pool-price-bump=10
-tx-pool-retention-hours=1
+#tx-pool-retention-hours=1
+#tx-pool-no-local-priority=true
 
 # https://besu.hyperledger.org/public-networks/how-to/connect/manage-peers
 remote-connections-limit-enabled=false

@@ -25,6 +25,8 @@ export BESU_PERF_ELIMINATE_REDUNDANT_BLOCK_VALIDATION_ENABLED=true
 #######################################
 export BESU_OPTS=-Xmx1g
 export BESU_AUTO_LOG_BLOOM_CACHING_ENABLED=false
+export BESU_TX_POOL=legacy 
+export BESU_TX_POOL=sequenced
 export BESU_TX_POOL_MAX_SIZE=1000
 export BESU_TX_POOL_LIMIT_BY_ACCOUNT_PERCENTAGE=1.0
 #export BESU_RPC_HTTP_API=ETH,NET,WEB3,TXPOOL
@@ -34,6 +36,7 @@ export BESU_TX_POOL_LIMIT_BY_ACCOUNT_PERCENTAGE=1.0
 # 실행할 besu 소스코드 위치 
 besuSourcePath=$workingDir/../../../gitlab/besu-client
 #besuSourcePath=$workingDir/../../../github-utils/besu-client-tmp
+besuSourcePath=$workingDir/../../besu-client
 
 #Check Requirement
 if ! [ -e $besuSourcePath ] ; then
