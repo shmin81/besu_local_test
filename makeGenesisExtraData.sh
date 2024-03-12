@@ -5,6 +5,7 @@ workingDir=$(pwd)
 echo 'Working Dir: '$workingDir
 
 ##########################################
+nodeAddrPath=./nodeAddress.json
 consensus=IBFT
 consensus=QBFT
 ##########################################
@@ -33,9 +34,6 @@ function chkPathResult {
     fi
 }
 
-configPath='genesis_'$consensus'_Input.json'
-chkPathResult $configPath
-
 ## 
 echo '\n* Exec besu --version'
 $besuPath --version
@@ -43,7 +41,8 @@ chkExexResult $? $besuPath
 
 sleep 2
 echo ''
+# besu rlp encode [--from=<FILE>] [--to=<FILE>] [--type=<type>]
+echo '* Exec: besu rlp encode --from='$nodeAddrPath --to='extra_data_for_'$consensus'_genesis.txt' --type=$consensus'_EXTRA_DATA'
+$besuPath rlp encode --from=$nodeAddrPath --to='extra_data_for_'$consensus'_genesis.txt' --type=$consensus'_EXTRA_DATA'
 
-# besu operator generate-blockchain-config --config-file=<FILE> --to=<DIRECTORY> [--genesis-file-name=<FILE>] [--private-key-file-name=<FILE>] [--public-key-file-name=<FILE>]
-echo '* Exec: besu operator generate-blockchain-config ' --config-file=$configPath --to='./out'$consensus
-$besuPath operator generate-blockchain-config --config-file=$configPath --to='./out'$consensus
+echo 'done.'
