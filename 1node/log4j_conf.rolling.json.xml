@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+  <Properties>
+    <Property name="root.log.level">INFO</Property>
+  </Properties>
+
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSSZZZ} | %t | %-5level | %c{1} | %msg %throwable{short.message}%n" />
+    </Console>
+    <RollingFile name="RollingFile" fileName="/home/cogod144/besu_local_test/1node/data/besu-${env:BESU_IDENTITY}.log" filePattern="/home/cogod144/besu_local_test/1node/data/$${date:yyyy-MM}/besu-%d{yyyy-MM-dd-HH}-%i.log.gz" >
+      <PatternLayout alwaysWriteExceptions="false" pattern='{"timestamp":"%d{ISO8601}","container":"${hostName}","level":"%level","thread":"%t","class":"%c{1}","message":"%msg","throwable":"%enc{%throwable}{JSON}"}%n'/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="6" modulate="true" maxRandomDelay="10"/>
+        <SizeBasedTriggeringPolicy size="5 MB" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="/home/cogod144/besu_local_test/1node/data" maxDepth="2">
+          <IfFileName glob="*/besu-*.log.gz" />
+          <IfLastModified age="P180D">
+            <IfAny>
+              <IfAccumulatedFileSize exceeds="20 GB" />
+            </IfAny>
+          </IfLastModified>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <Root level="${sys:root.log.level}">
+      <AppenderRef ref="RollingFile" />
+      <AppenderRef ref="Console" />
+    </Root>
+  </Loggers>
+</Configuration>
