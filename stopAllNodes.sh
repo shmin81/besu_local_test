@@ -5,14 +5,31 @@
 workingDir=$(pwd)
 echo $workingDir
 
-echo 'kill... besu process'
-# ps -ef | grep "org.hyperledger.besu.Besu --config-file=./node01/conf1.toml" | awk '{print $2}' | xargs kill
-# ps -ef | grep "org.hyperledger.besu.Besu --config-file=./node02/conf2.toml" | awk '{print $2}' | xargs kill
-# ps -ef | grep "org.hyperledger.besu.Besu --config-file=./node03/conf3.toml" | awk '{print $2}' | xargs kill
-# ps -ef | grep "org.hyperledger.besu.Besu --config-file=./node04/conf4.toml" | awk '{print $2}' | xargs kill
+function checkRunning {
+  echo ''
+  echo '* check besu process'
+  ps -ef | grep "org.hyperledger.besu.Besu --config-file=" | awk '{print $2, $7, $8}' > status.txt
 
-ps -ef | grep "org.hyperledger.besu.Besu --config-file=" | awk '{print $2}' | xargs kill
+  number=`cat status.txt | wc -l`
+
+  if [ "1" == "$number" ]; then
+    echo "besu is not running."
+    echo 'done.'
+    exit 0
+  else
+    echo "besu is running..."
+  fi
+}
+
+checkRunning
+
+echo ''
+echo '* stopping... besu process'
+#ps -ef | grep "org.hyperledger.besu.Besu --config-file=" | awk '{print $2}' | xargs kill
+ps -ef | grep "org.hyperledger.besu.Besu --config-file=" | awk '{ if ( $8 != "grep") print ($2) }' | xargs kill
 
 sleep 2
-echo '====  status  ===='
-ps -ef | grep "org.hyperledger.besu.Besu"
+
+checkRunning
+
+echo 'done.'
