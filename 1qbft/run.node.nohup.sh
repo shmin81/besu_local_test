@@ -92,7 +92,7 @@ echo  workingDir: $workingDir
 checkRunning 2
 sleep 3
 
-echo '\n* node1 Exec besu --config-file xxx'
+echo '* node1 Exec besu --config-file xxx'
 #$besuPath --config-file="./node01/conf1.toml"
 
 # nohup.out 파일 생성하여, 콘솔출력 저장 및 백그라운드 작업 실행
