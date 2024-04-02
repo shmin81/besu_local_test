@@ -33,6 +33,7 @@ rpc-http-authentication-enabled=false
 rpc-http-authentication-jwt-public-key-file="./publicKey.pem"
 
 rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
 rpc-ws-port=8546
 
 # https://besu.hyperledger.org/public-networks/how-to/connect/manage-peers

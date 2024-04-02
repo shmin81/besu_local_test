@@ -89,6 +89,7 @@ pwd
 echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
 echo  workingDir: $workingDir
 
+# besu가 이미 실행 중이면, 스크립트 종료
 checkRunning 2
 sleep 3
 
@@ -98,6 +99,7 @@ echo '* node1 Exec besu --config-file xxx'
 # nohup.out 파일 생성하여, 콘솔출력 저장 및 백그라운드 작업 실행
 nohup $besuPath --config-file="./node01/conf1.toml" &
 
+# besu가 실행 중인지 확인 (초기 실행 에러 여부 확인)
 sleep 3
 checkRunning 0
 sleep 3

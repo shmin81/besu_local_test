@@ -5,20 +5,22 @@
 workingDir=$(pwd)
 echo $workingDir
 
-minus=1
+#besu config path 
+besuConfPath=''
+#besuConfPath=./node02/conf2.toml
 
 function checkRunning {
   echo ''
-  echo '* check besu process'
+  echo '* check process (Besu --config-file='$besuConfPath')'
 
-  ps -ef | grep "org.hyperledger.besu.Besu --config-file=" | awk '{print $1, $2, $4, $7, $8, $9}'
+  ps -ef | grep "org.hyperledger.besu.Besu --config-file="$besuConfPath | awk '{print $1, $2, $4, $7, $8, $9}'
   echo ''
 
-  ps -ef | grep "org.hyperledger.besu.Besu --config-file=" | awk '{print $2, $7, $8}' > status.txt
+  ps -ef | grep "org.hyperledger.besu.Besu --config-file="$besuConfPath | awk '{print $2, $7, $8}' > status.txt
 
   number=`cat status.txt | wc -l`
 
-  let cnt=number-minus
+  let cnt=number-1
 
   if [ "1" == "$number" ]; then
     echo "besu is not running."
