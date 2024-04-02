@@ -4,6 +4,7 @@ data/
 *.log
 *.pem
 *.tmp
+status.txt
 
 node_modules/
 package-lock.json
