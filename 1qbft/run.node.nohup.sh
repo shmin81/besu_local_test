@@ -74,7 +74,7 @@ function checkRunning {
     #echo "besu is not start yet."
   else
     if  [ "2" == "$1" ]; then
-      echo "besu is allready running..."
+      echo "besu is already running..."
       exit
     fi
     echo "besu is running..."
