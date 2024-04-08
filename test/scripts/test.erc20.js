@@ -3,7 +3,8 @@ let customChain = null
 exports.customChain = function (chainId, forkStr = 'istanbul') {
   let networkComm = { chainId, networkId: chainId, defaultHardfork: forkStr }
   //console.log(networkComm)
-  customChain = Common.custom(networkComm)
+  let cChain = Common.custom(networkComm)
+  customChain =  { common: cChain }
   return customChain
 }
 
@@ -102,7 +103,7 @@ exports.transferReq = function (senderKey, receiver, nonce, amount = 1) {
   }
 
   // sign the transaction
-  const txObj = LegacyTransaction.fromTxData(txData, { common: customChain })
+  const txObj = LegacyTransaction.fromTxData(txData, customChain)
   // console.log(`tx: ${JSON.stringify(txObj, null, 2)}`)
   const signedObj = txObj.sign(senderKey)
   //console.log(`signed tx: ${JSON.stringify(signedObj)}`)
