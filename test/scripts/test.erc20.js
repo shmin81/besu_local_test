@@ -1,4 +1,4 @@
-const Common = require('@ethereumjs/common').default
+const { Common } = require('@ethereumjs/common')
 let customChain = null
 exports.customChain = function (chainId, forkStr = 'istanbul') {
   let networkComm = { chainId, networkId: chainId, defaultHardfork: forkStr }
@@ -9,7 +9,7 @@ exports.customChain = function (chainId, forkStr = 'istanbul') {
 
 const ABIHelper = require('./abi')
 const httpRequest = require('request-promise')
-const { Transaction } = require('@ethereumjs/tx')
+const { LegacyTransaction } = require('@ethereumjs/tx')
 const Web3_Utils = require('web3-utils')
 
 let contractAddr = null
@@ -102,17 +102,19 @@ exports.transferReq = function (senderKey, receiver, nonce, amount = 1) {
   }
 
   // sign the transaction
-  const txObj = Transaction.fromTxData(txData, { common: customChain })
+  const txObj = LegacyTransaction.fromTxData(txData, { common: customChain })
   // console.log(`tx: ${JSON.stringify(txObj, null, 2)}`)
   const signedObj = txObj.sign(senderKey)
   //console.log(`signed tx: ${JSON.stringify(signedObj)}`)
-  const signedTx = signedObj.serialize().toString('hex')
+  const signedTx = signedObj.serialize()
+
+  const signedTxHex = Buffer.from(signedTx).toString('hex')
 
   // fire away!
   const _body = {
     jsonrpc: '2.0',
     method: 'eth_sendRawTransaction',
-    params: [`0x${signedTx}`],
+    params: [`0x${signedTxHex}`],
     id: reqId,
   }
 

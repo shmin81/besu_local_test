@@ -6,9 +6,9 @@
   "author": "shmin",
   "license": "MIT",
   "dependencies": {
-      "@ethereumjs/tx": "^3.5.1",
+      "@ethereumjs/tx": "^5.2.1",
       "http": "0.0.1-security",
       "request-promise": "^4.2.6",
-      "web3": "^1.7.3"
+      "web3": "^4.5.0"
   }
 }

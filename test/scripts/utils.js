@@ -87,7 +87,8 @@ exports.sleep = function (ms) {
   while (Date.now() < wakeUpTime) {}
 }
 
-const { Address } = require('ethereumjs-util')
+//const { Address } = require('ethereumjs-util')
+const { Address } = require('@ethereumjs/util')
 exports.convertPrivKeyToAccount = function (privkey) {
   if (privkey.indexOf('0x') == 0) {
     privkey = privkey.substring(2)

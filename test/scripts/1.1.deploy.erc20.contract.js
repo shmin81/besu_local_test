@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
-const Web3 = require('web3')
+const { Web3, HttpProvider } = require('web3')
+//const Web3_Utils = require('web3-utils')
 const utils = require('./utils')
 
 const LOG = (msg) => console.log(`[${new Date().toISOString()}] ${typeof msg === 'object' ? JSON.stringify(msg) : msg}`)
@@ -31,7 +32,7 @@ async function init() {
   LOG(`RPC: ${httpRpcUrl}`)
 
   //let httpProvider = new Web3.providers.HttpProvider(httpRpcUrl, utils.getweb3HttpHeader(conf));
-  let httpProvider = new Web3.providers.HttpProvider(httpRpcUrl)
+  let httpProvider = new HttpProvider(httpRpcUrl)
   web3 = new Web3(httpProvider)
 
   // smart conract deploy account
@@ -55,18 +56,21 @@ async function run() {
     let txNonce = await web3.eth.getTransactionCount(accountFrom.address, 'pending')
     LOG(`web3.eth.getTransactionCount(${accountFrom.address}) => ${txNonce}`)
 
-    txObject.nonce = web3.utils.numberToHex(txNonce)
-    txObject.gasPrice = 0
-    txObject.gasLimit = results + 50000
-
-    LOG(`tx: ${JSON.stringify(txObject)}`)
+    //txObject.nonce = web3.utils.numberToHex(txNonce)
+    txObject.nonce = txNonce
+    txObject.gasPrice = 0n
+    console.log(txObject)
+    txObject.gasLimit = (results + 50000n)
+    console.log(txObject)
+    //console.log('tx:', txObject)
     let signedObj = await web3.eth.accounts.signTransaction(txObject, accountFrom.privateKey)
-    //LOG(`signed tx: ${JSON.stringify(signedObj)}`)
+    LOG(`signed tx: ${JSON.stringify(signedObj)}`)
 
     let txResults = await web3.eth.sendSignedTransaction(signedObj.rawTransaction)
-    LOG(`web3.eth.sendSignedTransaction() => ${JSON.stringify(txResults)}`)
+    console.log('tx receipt:', txResults)
 
-    if (txResults.status === true) {
+    //if (txResults.status === true) {
+    if (txResults.status === 1n) {
       LOG(` *** send tx - Seccess ***`)
       LOG(` * contractAddress: ${txResults.contractAddress}`)
       utils.deployNewErc20Contract(txResults.contractAddress, txResults.transactionHash)
