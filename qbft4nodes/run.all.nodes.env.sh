@@ -3,7 +3,6 @@
 # node 2,3,4는 다른 스크립트(stopAllNodes.sh)를 이용해 중지 가능
 
 clear
-
 workingDir=$(pwd)
 echo $workingDir
 
