@@ -12,7 +12,10 @@ genesis-file="./genesis.json"
 
 min-gas-price=0
 sync-mode="FULL"
+#data-storage-format="BONSAI"
+
 host-allowlist=["*"]
+#banned-node-ids=["0x2b6b9b1a5eaf945ef2f3a8be52f182ffce5d26986664ed72fcdeb40dbdbfb2986aadb0af46664ce04eac916452e3be85056d73e30875f0bc00bba43fb7f731ea"]
 
 # identity
 identity="node4"

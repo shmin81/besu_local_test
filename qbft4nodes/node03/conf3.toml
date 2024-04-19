@@ -2,7 +2,7 @@
 
 # data
 data-path="./node03/data"
-logging="DEBUG"
+logging="INFO"
 
 # private_key
 node-private-key-file="./out/keys/0x953fe4581728283e2f84ae1eb7bd5194596079ed/key.priv"
@@ -12,6 +12,8 @@ genesis-file="./genesis.json"
 
 min-gas-price=0
 sync-mode="FULL"
+#data-storage-format="BONSAI"
+
 host-allowlist=["*"]
 
 # identity
