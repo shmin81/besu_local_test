@@ -33,6 +33,10 @@ rpc-http-cors-origins=["*"]
 rpc-ws-enabled=true
 rpc-ws-port=8556
 
+#metrics-enabled=true
+metrics-host="0.0.0.0"
+metrics-port=9555
+
 # https://besu.hyperledger.org/public-networks/how-to/connect/manage-peers
 remote-connections-limit-enabled=false
 random-peer-priority-enabled=true
