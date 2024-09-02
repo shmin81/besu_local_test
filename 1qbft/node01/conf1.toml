@@ -12,9 +12,10 @@ node-private-key-file="../1node/out/keys/0xe88550bebd195433d429ec9f3e737ec2d2e02
 auto-log-bloom-caching-enabled=false
 genesis-file="./genesis.json"
 
-min-gas-price=0
-sync-mode="FULL"
 host-allowlist=["*"]
+min-gas-price=0
+data-storage-format="FOREST"
+sync-mode="FULL"
 
 # identity
 identity="qbft_node1"
