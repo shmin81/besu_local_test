@@ -30,6 +30,10 @@ rpc-http-cors-origins=["*"]
 rpc-ws-enabled=true
 rpc-ws-port=8556
 
+metrics-enabled=false
+metrics-host="0.0.0.0"
+metrics-port=9555
+
 # txpool
 tx-pool-limit-by-account-percentage=0.4
 tx-pool-max-size=100
@@ -42,8 +46,3 @@ random-peer-priority-enabled=true
 revert-reason-enabled=true
 
 bootnodes=["enode://6ccdf5893a1ed9214c92f48b8f94fc95fb0f81614262c1ef493369fb28f967d6dff3a176dd0b1f0a901451a70626755c8101bdac92a7eea558a75b78869c09ed@127.0.0.1:30303"]
-
-# tx-pool-tx-inflow-control-enabled=true
-# tx-pool-enterprise-pending-tx-sorter-enabled=true
-# tx-pool-tx-fast-verify-signature-enabled=true
-# perf-eliminate-redundant-block-validation-enabled=true

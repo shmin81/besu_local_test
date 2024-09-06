@@ -33,7 +33,12 @@ rpc-http-authentication-enabled=false
 rpc-http-authentication-jwt-public-key-file="./publicKey.pem"
 
 rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
 rpc-ws-port=8546
+
+metrics-enabled=false
+metrics-host="0.0.0.0"
+metrics-port=9545
 
 # txpool
 tx-pool-limit-by-account-percentage=0.4
@@ -45,8 +50,3 @@ tx-pool-retention-hours=1
 remote-connections-limit-enabled=false
 random-peer-priority-enabled=true
 revert-reason-enabled=true
-
-# tx-pool-tx-inflow-control-enabled=true
-# tx-pool-enterprise-pending-tx-sorter-enabled=true
-# tx-pool-tx-fast-verify-signature-enabled=true
-# perf-eliminate-redundant-block-validation-enabled=true
