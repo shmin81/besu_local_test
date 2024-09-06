@@ -1,12 +1,13 @@
 #!/bin/bash
 # node 2,3,4는 background에서 실행하고, node 1을 foreground에서 실행
 # node 2,3,4는 다른 스크립트(stopAllNodes.sh)를 이용해 중지 가능
-
 clear
 
 workingDir=$(pwd)
 echo $workingDir
+echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
 
+shell=bash
 # echo 'remove old datas'
 # rm -rf ./node01/data/*
 # rm -rf ./node02/data/*
@@ -64,17 +65,21 @@ besuPath=$besuSourcePath/build/install/besu/bin/besu
 # besuPath=besu
 besuPath=$besuSourcePath/bin/besu
 
-echo '\n* Exec besu --version'
-$besuPath --version
-exitCode=$?
-if [ $exitCode -ne 0 ] ; then
-    echo 'exit by fail ('$besuPath' --version -> exitCode:'$exitCode')'
-    exit 1
-fi
+function chkExexResult {
+    if [ $1 -ne 0 ] ; then
+        echo 'exit by fail ('$2' -> exitCode:'$1')'
+        exit 1
+    fi
+}
 
-echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
-echo  workingDir: $workingDir
-sleep 3
+echo '* Exec besu --version'
+$besuPath --version
+chkExexResult $? $besuPath
+
+# besu가 이미 실행 중이면, 스크립트 종료
+$shell ../common/chkBesuStatus.sh
+chkExexResult $? 'check besu process'
+sleep 2
 
 echo '\n* node4 Exec besu --config-file xxx'
 nohup $besuPath --config-file="./node04/conf4.toml" --identity=besu4 > node04.log 2>&1 &

@@ -2,7 +2,9 @@
 clear
 workingDir=$(pwd)
 echo $workingDir
+echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
 
+shell=bash
 # echo 'remove old datas'
 #rm -rf ./node01/data/*
 
@@ -35,10 +37,10 @@ echo '\n* Exec besu --version'
 $besuPath --version
 chkExexResult $? $besuPath
 
-pwd
-echo "$(date +%Y)년 $(date +%m)월 $(date +%d)일  $(date +%H)시 $(date +%M)분 $(date +%S)초"
-echo  workingDir: $workingDir
-sleep 3
+# besu가 이미 실행 중이면, 스크립트 종료
+$shell ../common/chkBesuStatus.sh "./node01/conf1.toml"
+chkExexResult $? 'check besu process'
+sleep 2
 
 echo '\n* node1 Exec besu --config-file xxx'
 $besuPath --config-file="./node01/conf1.toml" --identity=besu1
