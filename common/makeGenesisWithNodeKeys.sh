@@ -5,12 +5,11 @@ workingDir=$(pwd)
 echo 'Working Dir: '$workingDir
 
 ##########################################
-consensus=IBFT
+#consensus=IBFT
 consensus=QBFT
 ##########################################
 echo 'Consensus Algorithm : '$consensus
-# 자바 버전 셋팅
-#export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+
 # 실행할 besu 소스코드 위치 
 #besuSourcePath=/Users/????/Downloads/gitlab/besu-client
 besuSourcePath=$workingDir/../../gitlab/besu-client
@@ -37,6 +36,10 @@ configPath='genesis_'$consensus'_Input.json'
 chkPathResult $configPath
 
 ## 
+echo '\n* Exec java --version'
+java --version
+chkExexResult $? 'java'
+
 echo '\n* Exec besu --version'
 $besuPath --version
 chkExexResult $? $besuPath
@@ -47,3 +50,5 @@ echo ''
 # besu operator generate-blockchain-config --config-file=<FILE> --to=<DIRECTORY> [--genesis-file-name=<FILE>] [--private-key-file-name=<FILE>] [--public-key-file-name=<FILE>]
 echo '* Exec: besu operator generate-blockchain-config ' --config-file=$configPath --to='./out'$consensus
 $besuPath operator generate-blockchain-config --config-file=$configPath --to='./out'$consensus
+
+echo 'done.'

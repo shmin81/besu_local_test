@@ -5,13 +5,12 @@ workingDir=$(pwd)
 echo 'Working Dir: '$workingDir
 
 ##########################################
-nodeAddrPath=./nodeAddress.json
-consensus=IBFT
+nodeAddrPath=./nodeAddress_Input.json
+#consensus=IBFT
 consensus=QBFT
 ##########################################
 echo 'Consensus Algorithm : '$consensus
-# 자바 버전 셋팅
-#export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+
 # 실행할 besu 소스코드 위치 
 #besuSourcePath=/Users/????/Downloads/gitlab/besu-client
 besuSourcePath=$workingDir/../../gitlab/besu-client
@@ -34,7 +33,14 @@ function chkPathResult {
     fi
 }
 
+##
+chkPathResult $nodeAddrPath
+
 ## 
+echo '\n* Exec java --version'
+java --version
+chkExexResult $? 'java'
+
 echo '\n* Exec besu --version'
 $besuPath --version
 chkExexResult $? $besuPath
