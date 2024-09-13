@@ -14,7 +14,7 @@ shell=bash
 #besuSourcePath=$workingDir/../../besu-binary/23.10.2
 #besuSourcePath=$workingDir/../../besu-binary/23.10.3-hotfix
 besuSourcePath=$workingDir/../../../besu-binary/24.7.1
-#besuSourcePath=$workingDir/../../besu-binary/23.1.3.2
+besuSourcePath=$workingDir/../../../besu-binary/24.1.0
 #besuSourcePath=/home/cogod144/gitlab/besu-client
 
 # 실행할 besu 바이너리 위치 
