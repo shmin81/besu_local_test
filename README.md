@@ -9,7 +9,7 @@
 6. sh runAllNodes.new.sh (or runAllNodes.sh)
 
 # besu run only process
-1. install jdk11
+1. install jdk11/17/21
 2. 로컬에 besu 설치(https://besu.hyperledger.org/en/21.10.9/HowTo/Get-Started/Installation-Options/Install-Binaries/)
 3. {{besu_local_test}}/local4nodes 설정 파일 확인 (genesis_IBFT2.json)
 4. {{besu_local_test}}/local4nodes/node{x} 폴더 안의 conf{x}.toml 파일의 경로 수정 -> {{besu_local_test}}의 경로로 수정
